@@ -2,13 +2,13 @@ package com.system.tabletennis_training_management_system.pojo;
 import java.util.Date;
 import jakarta.persistence.*;
 
-@Table(name="coach_cancels_class")
+@Table(name="teaching_evaluation")
 @Entity
-public class coach_cancels_class {
+public class teaching_evaluation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "coach_cancels_class_id")
-    private Integer coachCancelsClassId;
+    @Column(name = "teaching_evaluation_id")
+    private Integer teachingEvaluationId;
 
     @Column(name = "course_name")
     private String courseName;
@@ -37,29 +37,29 @@ public class coach_cancels_class {
     @Column(name = "content_of_courses", columnDefinition = "TEXT")
     private String contentOfCourses;
 
-    @Column(name = "duration_of_teaching_hours")
-    private Double durationOfTeachingHours;
+    @Column(name = "review_video")
+    private String reviewVideo;
 
-    @Column(name = "course_notes")
-    private String courseNotes;
+    @Column(name = "evaluation_content", columnDefinition = "LONGTEXT")
+    private String evaluationContent;
 
     @Column(name = "source_user_id")
     private Integer sourceUserId;
 
-    public String getName() {
-        return name;
+    public String getCoachName() {
+        return coachName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCoachName(String coachName) {
+        this.coachName = coachName;
     }
 
-    public Integer getCoachCancelsClassId() {
-        return coachCancelsClassId;
+    public Integer getTeachingEvaluationId() {
+        return teachingEvaluationId;
     }
 
-    public void setCoachCancelsClassId(Integer coachCancelsClassId) {
-        this.coachCancelsClassId = coachCancelsClassId;
+    public void setTeachingEvaluationId(Integer teachingEvaluationId) {
+        this.teachingEvaluationId = teachingEvaluationId;
     }
 
     public String getCourseName() {
@@ -86,20 +86,20 @@ public class coach_cancels_class {
         this.coachUser = coachUser;
     }
 
-    public String getCoachName() {
-        return coachName;
-    }
-
-    public void setCoachName(String coachName) {
-        this.coachName = coachName;
-    }
-
     public Integer getStudentUsers() {
         return studentUsers;
     }
 
     public void setStudentUsers(Integer studentUsers) {
         this.studentUsers = studentUsers;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getScheduleDate() {
@@ -126,20 +126,20 @@ public class coach_cancels_class {
         this.contentOfCourses = contentOfCourses;
     }
 
-    public Double getDurationOfTeachingHours() {
-        return durationOfTeachingHours;
+    public String getReviewVideo() {
+        return reviewVideo;
     }
 
-    public void setDurationOfTeachingHours(Double durationOfTeachingHours) {
-        this.durationOfTeachingHours = durationOfTeachingHours;
+    public void setReviewVideo(String reviewVideo) {
+        this.reviewVideo = reviewVideo;
     }
 
-    public String getCourseNotes() {
-        return courseNotes;
+    public String getEvaluationContent() {
+        return evaluationContent;
     }
 
-    public void setCourseNotes(String courseNotes) {
-        this.courseNotes = courseNotes;
+    public void setEvaluationContent(String evaluationContent) {
+        this.evaluationContent = evaluationContent;
     }
 
     public Integer getSourceUserId() {
@@ -152,19 +152,19 @@ public class coach_cancels_class {
 
     @Override
     public String toString() {
-        return "coach_cancels_class{" +
-                "scheduleDate=" + scheduleDate +
-                ", coachCancelsClassId=" + coachCancelsClassId +
+        return "teaching_evaluation{" +
+                "teachingEvaluationId=" + teachingEvaluationId +
                 ", courseName='" + courseName + '\'' +
                 ", courseNumber='" + courseNumber + '\'' +
                 ", coachUser=" + coachUser +
                 ", coachName='" + coachName + '\'' +
                 ", studentUsers=" + studentUsers +
                 ", name='" + name + '\'' +
+                ", scheduleDate=" + scheduleDate +
                 ", schedulingPeriod='" + schedulingPeriod + '\'' +
                 ", contentOfCourses='" + contentOfCourses + '\'' +
-                ", durationOfTeachingHours=" + durationOfTeachingHours +
-                ", courseNotes='" + courseNotes + '\'' +
+                ", reviewVideo='" + reviewVideo + '\'' +
+                ", evaluationContent='" + evaluationContent + '\'' +
                 ", sourceUserId=" + sourceUserId +
                 '}';
     }
