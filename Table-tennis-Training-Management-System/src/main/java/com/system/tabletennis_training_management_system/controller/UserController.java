@@ -4,6 +4,8 @@ import com.system.tabletennis_training_management_system.pojo.ResponseMessage;
 import com.system.tabletennis_training_management_system.pojo.User;
 import com.system.tabletennis_training_management_system.pojo.dto.UserDto;
 import com.system.tabletennis_training_management_system.service.IUserService;
+import com.system.tabletennis_training_management_system.service.UserService;
+import com.system.tabletennis_training_management_system.service.impl.UserServiceImpl;
 import jakarta.persistence.Column;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -24,8 +26,8 @@ public class UserController {
     IUserService userService;
 
     @GetMapping("/list")
-    public List<User> list(){
-        return userService.list();
+    public List<User> list() {
+        return userService.listAll();
     }
 
     // 增加
@@ -49,6 +51,7 @@ public class UserController {
         User userNew = userService.edit(userDto);
         return ResponseMessage.success(userNew);
     }
+
     // 删除
     @DeleteMapping("/{userId}")
     public ResponseMessage<User> delete(@PathVariable("userId") Integer userId) {

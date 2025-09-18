@@ -1,3 +1,4 @@
+/*
 package com.system.tabletennis_training_management_system.exception;
 
 import com.system.tabletennis_training_management_system.pojo.ResponseMessage;
@@ -19,3 +20,4 @@ public class GlobalExceptionHandlerAdvice {
         return new ResponseMessage<>(500, "error", null);
     }
 }
+*/

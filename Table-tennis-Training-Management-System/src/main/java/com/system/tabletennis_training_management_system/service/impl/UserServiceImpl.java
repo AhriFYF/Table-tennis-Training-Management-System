@@ -6,9 +6,12 @@ import com.system.tabletennis_training_management_system.pojo.User;
 import com.system.tabletennis_training_management_system.pojo.dto.UserDto;
 import com.system.tabletennis_training_management_system.repository.UserRepository;
 import com.system.tabletennis_training_management_system.service.IUserService;
+import jakarta.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
@@ -38,6 +41,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public void delete(Integer userId) {
         userRepository.deleteById(userId);
+    }
+
+    @Resource
+    private UserMapper userMapper;
+    @Override
+    public List<User> listAll() {
+        return userMapper.listAll();
     }
 
 }

@@ -1,11 +1,15 @@
 package com.system.tabletennis_training_management_system.service;
 
+import com.system.tabletennis_training_management_system.mapper.UserMapper;
 import com.system.tabletennis_training_management_system.pojo.User;
 import com.system.tabletennis_training_management_system.pojo.dto.UserDto;
 import com.system.tabletennis_training_management_system.repository.UserRepository;
+import jakarta.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public abstract class UserService implements IUserService{
@@ -37,4 +41,10 @@ public abstract class UserService implements IUserService{
         userRepository.deleteById(userId);
     }
 
+    @Resource
+    private UserMapper userMapper;
+    @Override
+    public List<User> listAll() {
+        return userMapper.listAll();
+    }
 }
