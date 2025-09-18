@@ -9,12 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
+    @GetMapping
+    public String test() {
+        return "success";
+    }
+
     @Autowired
     IUserService userService;
+
+    @GetMapping("/list")
+    public List<User> list(){
+        return userService.list();
+    }
 
     // 增加
     @PostMapping(consumes = "application/json", produces = "application/json")

@@ -1,9 +1,11 @@
 package com.system.tabletennis_training_management_system.service;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.system.tabletennis_training_management_system.pojo.User;
 import com.system.tabletennis_training_management_system.pojo.dto.UserDto;
 
-public interface IUserService {
+public interface IUserService extends IService<User> {
     User add(UserDto user);
     User getUser(Integer userId);
     User edit(UserDto user);

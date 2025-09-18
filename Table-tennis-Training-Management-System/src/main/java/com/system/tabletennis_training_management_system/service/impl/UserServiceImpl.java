@@ -1,14 +1,17 @@
-package com.system.tabletennis_training_management_system.service;
+package com.system.tabletennis_training_management_system.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.system.tabletennis_training_management_system.mapper.UserMapper;
 import com.system.tabletennis_training_management_system.pojo.User;
 import com.system.tabletennis_training_management_system.pojo.dto.UserDto;
 import com.system.tabletennis_training_management_system.repository.UserRepository;
+import com.system.tabletennis_training_management_system.service.IUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public abstract class UserService implements IUserService{
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     @Autowired
     UserRepository userRepository;
