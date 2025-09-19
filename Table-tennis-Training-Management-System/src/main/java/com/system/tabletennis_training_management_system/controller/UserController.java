@@ -1,5 +1,6 @@
 package com.system.tabletennis_training_management_system.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.system.tabletennis_training_management_system.pojo.ResponseMessage;
 import com.system.tabletennis_training_management_system.pojo.User;
 import com.system.tabletennis_training_management_system.pojo.dto.UserDto;
@@ -46,16 +47,25 @@ public class UserController {
     }
 
     // 修改
-    @PutMapping
+    @PutMapping("/mod")
     public ResponseMessage<User> edit(@Validated @RequestBody UserDto userDto) {
         User userNew = userService.edit(userDto);
         return ResponseMessage.success(userNew);
     }
 
     // 删除
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/delete/{userId}")
     public ResponseMessage<User> delete(@PathVariable("userId") Integer userId) {
         userService.delete(userId);
         return ResponseMessage.success(null);
     }
+
+    // 模糊查询
+    @PostMapping("/listP")
+    public List<User> listP(@RequestBody User user) {
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.like(User::getUserName, user.getUserName());
+        return userService.list(queryWrapper);
+    }
+
 }
