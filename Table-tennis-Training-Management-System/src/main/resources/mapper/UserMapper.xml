@@ -4,4 +4,8 @@
     <select id="listAll" resultType="com.system.tabletennis_training_management_system.pojo.User">
         select * from tb_table
     </select>
+
+    <select id="findByUserNameLike" resultType="com.system.tabletennis_training_management_system.pojo.User">
+        select * from tb_table where user_name like '%${userName}%'
+    </select>
 </mapper>

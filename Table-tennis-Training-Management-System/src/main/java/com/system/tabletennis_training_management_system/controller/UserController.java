@@ -1,6 +1,7 @@
 package com.system.tabletennis_training_management_system.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.system.tabletennis_training_management_system.common.QueryPageParam;
 import com.system.tabletennis_training_management_system.pojo.ResponseMessage;
 import com.system.tabletennis_training_management_system.pojo.User;
 import com.system.tabletennis_training_management_system.pojo.dto.UserDto;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -63,9 +65,23 @@ public class UserController {
     // 模糊查询
     @PostMapping("/listP")
     public List<User> listP(@RequestBody User user) {
-        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.like(User::getUserName, user.getUserName());
-        return userService.list(queryWrapper);
+        System.out.println("接收到的userName参数：" + user.getUserName());
+        return userService.listP(user.getUserName());
+    }
+
+    //分页
+    @PostMapping("/listPage")
+    public List<User> listPage(@RequestBody QueryPageParam query){
+        System.out.println(query);
+
+        System.out.println("num===" + query.getPageNum());
+        System.out.println("size===" + query.getPageSize());
+
+        HashMap param = query.getParam() ;
+        System.out.println("name===" + (String)param.get("userName"));
+        System.out.println("no===" + (String) param.get("no"));
+
+        return null;
     }
 
 }

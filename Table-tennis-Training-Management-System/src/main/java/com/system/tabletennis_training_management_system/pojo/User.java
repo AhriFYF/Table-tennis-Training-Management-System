@@ -1,4 +1,5 @@
 package com.system.tabletennis_training_management_system.pojo;
+import com.baomidou.mybatisplus.annotation.TableField;
 
 import jakarta.persistence.*;
 

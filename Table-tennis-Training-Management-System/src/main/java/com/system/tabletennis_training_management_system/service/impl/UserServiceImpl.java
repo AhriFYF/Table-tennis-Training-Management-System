@@ -50,4 +50,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return userMapper.listAll();
     }
 
+    @Override
+    public List<User> listP(String userName) {
+        return userMapper.findByUserNameLike(userName);
+    }
+
 }

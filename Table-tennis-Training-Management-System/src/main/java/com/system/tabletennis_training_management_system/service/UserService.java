@@ -47,4 +47,9 @@ public abstract class UserService implements IUserService{
     public List<User> listAll() {
         return userMapper.listAll();
     }
+
+    @Override
+    public List<User> listP(String userName) {
+        return userMapper.findByUserNameLike(userName);
+    }
 }

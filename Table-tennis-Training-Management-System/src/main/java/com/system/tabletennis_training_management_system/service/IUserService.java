@@ -14,4 +14,5 @@ public interface IUserService extends IService<User> {
     void delete(Integer userId);
 
     List<User> listAll();
+    List<User> listP(String userName);
 }
