@@ -1,14 +1,13 @@
 package com.system.tabletennis_training_management_system.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.system.tabletennis_training_management_system.common.QueryPageParam;
+import com.system.tabletennis_training_management_system.common.Result;
 import com.system.tabletennis_training_management_system.pojo.ResponseMessage;
 import com.system.tabletennis_training_management_system.pojo.User;
 import com.system.tabletennis_training_management_system.pojo.dto.UserDto;
 import com.system.tabletennis_training_management_system.service.IUserService;
-import com.system.tabletennis_training_management_system.service.UserService;
-import com.system.tabletennis_training_management_system.service.impl.UserServiceImpl;
-import jakarta.persistence.Column;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -74,14 +73,44 @@ public class UserController {
     public List<User> listPage(@RequestBody QueryPageParam query){
         System.out.println(query);
 
-        System.out.println("num===" + query.getPageNum());
-        System.out.println("size===" + query.getPageSize());
+        Integer pageNum = query.getPageNum();
+        Integer pageSize = query.getPageSize();
+        System.out.println("num===" + pageNum);
+        System.out.println("size===" + pageSize);
 
         HashMap param = query.getParam() ;
+        String userName = (String)param.get("userName");
         System.out.println("name===" + (String)param.get("userName"));
+        String no = (String)param.get("userNo");
         System.out.println("no===" + (String) param.get("no"));
 
-        return null;
+        Page<User> page = new Page<>(pageNum, pageSize);
+        IPage<User> result = userService.listPageByParams(page, query.getParam());
+        System.out.println("total===" + result.getTotal());
+
+        return result.getRecords();
+    }
+
+    @PostMapping("/msg")
+    public Result listmsg(@RequestBody QueryPageParam query){
+        System.out.println(query);
+
+        Integer pageNum = query.getPageNum();
+        Integer pageSize = query.getPageSize();
+        System.out.println("num===" + pageNum);
+        System.out.println("size===" + pageSize);
+
+        HashMap param = query.getParam() ;
+        String userName = (String)param.get("userName");
+        System.out.println("name===" + (String)param.get("userName"));
+        String no = (String)param.get("userNo");
+        System.out.println("no===" + (String) param.get("no"));
+
+        Page<User> page = new Page<>(pageNum, pageSize);
+        IPage<User> result = userService.listPageByParams(page, query.getParam());
+        System.out.println("total===" + result.getTotal());
+
+        return Result.success(result.getRecords(),result.getTotal());
     }
 
 }
