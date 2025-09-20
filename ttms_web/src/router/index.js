@@ -1,23 +1,58 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-//导入登录页面组件
-import Login from '@/views/login.vue'
 
-Vue.use(Router)
+import VueRouter from 'vue-router';
 
-export default new Router({
-    routes: [
-        {
-            path: '/',
-            name: 'HelloWorld',
-            component: HelloWorld
-        },
-        //添加登录页面路由
-        {
-            path:'/login',
-            name: 'Login',
-            component: Login
-        }
-    ]
+const routes = [
+    {
+        path:'/',
+        name:'login',
+        component:()=>import('../components/MyLogin.vue')
+    },
+    {
+        path:'/MyIndex',
+        name:'index',
+        component:()=>import('../components/MyIndex'),
+        children:[
+            {
+                path:'/Home',
+                name:'home',
+                meta:{
+                    title:'首页'
+                },
+                component:()=>import('../components/MyHome.vue')
+            },
+            /*{
+                path:'/Admin',
+                name:'admin',
+                meta:{
+                    title:'管理员管理'
+                },
+                component:()=>import('../components/admin/AdminManage.vue')
+            },
+            {
+                path:'/User',
+                name:'user',
+                meta:{
+                    title:'用户管理'
+                },
+                component:()=>import('../components/user/UserManage.vue')
+            },*/
+        ]
+    }
+]
+
+const router = new VueRouter({
+    mode:'history',
+    routes
 })
+
+export function resetRouter() {
+    router.matcher = new VueRouter({
+        mode:'history',
+        routes: []
+    }).matcher
+}
+const VueRouterPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (to) {
+    return VueRouterPush.call(this, to).catch(err => err)
+}
+export  default router;

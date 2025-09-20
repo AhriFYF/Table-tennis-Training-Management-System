@@ -25,7 +25,7 @@
 
 <script>
     export default {
-        name: "Login",
+        name: "MyLogin",
         data(){
             return{
                 confirm_disabled:false,

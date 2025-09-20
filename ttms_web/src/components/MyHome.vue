@@ -44,7 +44,7 @@
 <script>
     import DateUtils from "./DateUtils";
     export default {
-        name: "Home",
+        name: "MyHome",
         components: {DateUtils},
         data() {
 
