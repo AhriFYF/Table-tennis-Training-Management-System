@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.system.tabletennis_training_management_system.mapper.UserMapper">
-    <select id="listAll" resultType="com.system.tabletennis_training_management_system.pojo.User">
-        select * from tb_table
+<mapper namespace="com.wms.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wms.entity.User">
+        <id column="id" property="id" />
+        <result column="no" property="no" />
+        <result column="name" property="name" />
+        <result column="password" property="password" />
+        <result column="age" property="age" />
+        <result column="sex" property="sex" />
+        <result column="phone" property="phone" />
+        <result column="role_id" property="roleId" />
+        <result column="isValid" property="isvalid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, no, name, password, age, sex, phone, role_id, isValid
+    </sql>
+
+    <select id="pageC" resultType="com.wms.entity.User">
+        select * from user
     </select>
 
-    <select id="findByUserNameLike" resultType="com.system.tabletennis_training_management_system.pojo.User">
-        select * from tb_table where user_name like '%${userName}%'
-    </select>
-
-    <select id="countUsers" resultType="java.lang.Long">
-        SELECT count(*) FROM tb_table
-        <if test="userName != null and userName != ''">
-            WHERE user_name LIKE CONCAT('%', #{userName}, '%')
-        </if>
-    </select>
-
-    <select id="listPage" resultType="com.system.tabletennis_training_management_system.pojo.User">
-        SELECT * FROM tb_table
-        <if test="userName != null and userName != ''">
-            WHERE user_name LIKE CONCAT('%', #{userName}, '%')
-        </if>
-        LIMIT #{offset}, #{pageSize}
+    <select id="pageCC" resultType="com.wms.entity.User">
+        select * from user ${ew.customSqlSegment}
     </select>
 </mapper>
