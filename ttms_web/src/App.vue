@@ -1,15 +1,17 @@
 <template>
   <div id="app">
-    <router-view/>
+    <MyIndex></MyIndex>
   </div>
 </template>
 
 <script>
 
+import MyIndex from "@/components/MyIndex.vue";
+
 export default {
   name: 'App',
   components: {
-
+    MyIndex
   }
 }
 </script>
